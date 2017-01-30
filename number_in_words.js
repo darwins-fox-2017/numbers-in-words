@@ -1,45 +1,46 @@
-// function in_words(angka, result='') {
-//   // Your code here
-// var satuSampaiSembilanBelas = ['', 'Satu', 'Dua', 'Tiga', 'Empat',
-//                                 'Lima', 'Enam', 'Tujuh', 'Delapan',
-//                                 'Sembilan', 'Sepuluh', 'Sebelas',
-//                                 'Dua belas', 'Tiga belas', 'Empat belas',
-//                                 'Lima belas', 'Tujuh belas', 'Delapan belas',
-//                                 'Sembilan belas'];
-// var puluhans = ['Dua Puluh', 'Tiga Puluh', 'Empat Puluh',
-//                'Lima Puluh', 'Enam Puluh', 'Tujuh Puluh',
-//                'Delapan Puluh', 'Sembilan Puluh'];
-// var lebihDariSeratus = ['Ratus', 'Ribu', 'Juta', 'Miliar', 'Triliun'];
-// var satuan, puluhan, ratusan;
-// if (angka < 20) {
-//   return satuSampaiSembilanBelas[angka];
-// } else if (angka < 100) {
-//   puluhan = (Math.floor(angka / 10) - 2);
-//   // console.log(puluhan);
-//   satuan = angka % 10;
-//   return puluhans[puluhan] + ' ' + satuSampaiSembilanBelas[satuan];
-// } else if (angka < 1000) {
-//   ratusan = Math.floor(angka / 100);
-//
-//   puluhan = angka % 10;
-//   if (puluhan < 20) {
-//     return satuSampaiSembilanBelas[ratusan] + ' ' + lebihDariSeratus[0] + ' ' +satuSampaiSembilanBelas[puluhan];
-//   }
-//   console.log(puluhan);
-//
-//   return satuSampaiSembilanBelas[ratusan] + ' ' + lebihDariSeratus[0];
-// }
-//
-// }
 var satuan = ['', 'satu', 'dua', 'tiga', 'empat', 'lima',
               'enam', 'tujuh', 'delapan', 'sembilan']
 
 function in_words(angka, result=''){
 
+  if (angka.toString().length == 13 || angka.toString().length == 14 || angka.toString().length == 15 ) {
+    // 1.000.000.000.000
+
+    if (Math.floor(angka / 1000000000000).toString().length > 1 ) {
+      // console.log(angka - (Math.floor(angka / 1000000000) * 1000000000 ));
+      return in_words(Math.floor(angka / 1000000000000), result) + ' triliun '
+              + in_words((angka - (Math.floor(angka / 1000000000) * 1000000000 )), result)
+    }
+    let firstChar = angka.toString()[0]
+    result += satuan[firstChar]
+    result +=  ' triliun '
+    angka = angka - (firstChar * 1000000000000)
+
+    // console.log(result);
+    return in_words(angka, result)
+  }
+
+  if (angka.toString().length == 10 || angka.toString().length == 11 || angka.toString().length == 12 ) {
+
+    if (Math.floor(angka / 1000000000).toString().length > 1 ) {
+      // console.log('log woy!' + (angka - (Math.floor(angka / 1000000000) * 1000000000)));
+      return in_words(Math.floor(angka / 1000000000), result) + ' miliar '
+              + in_words((angka - (Math.floor(angka / 1000000000) * 1000000000)), result)
+    }
+    let firstChar = angka.toString()[0]
+    result += satuan[firstChar]
+    result +=  ' miliar '
+    angka = angka - (firstChar * 1000000000)
+
+    // console.log(result);
+    return in_words(angka, result)
+
+  }
 
   if (angka.toString().length == 7 || angka.toString().length == 8 || angka.toString().length == 9 ) {
     if (Math.floor(angka / 1000000).toString().length > 1 ) {
-      return in_words(Math.floor(angka / 1000000), result) + ' juta ' + in_words((angka - (Math.floor(angka / 1000000) * 1000000)), result)
+      return in_words(Math.floor(angka / 1000000), result) + ' juta '
+            + in_words((angka - (Math.floor(angka / 1000000) * 1000000)), result)
     }
     let firstChar = angka.toString()[0]
     result += satuan[firstChar]
@@ -51,7 +52,8 @@ function in_words(angka, result=''){
   }
   if (angka.toString().length == 4 || angka.toString().length == 5 || angka.toString().length == 6 ) {
     if (Math.floor(angka / 1000).toString().length > 1 ) {
-      return in_words(Math.floor(angka / 1000), result) + ' ribu ' + in_words((angka - (Math.floor(angka / 1000) * 1000)), result)
+      return in_words(Math.floor(angka / 1000), result) + ' ribu '
+            + in_words((angka - (Math.floor(angka / 1000) * 1000)), result)
     }
     let firstChar = angka.toString()[0]
     result += satuan[firstChar]
@@ -91,5 +93,6 @@ function in_words(angka, result=''){
 console.log(in_words(4));
 console.log(in_words(15));
 console.log(in_words(102));
-// console.log(in_words(13336779));
-// console.log(in_words(82102713));
+console.log(in_words(12333333));
+console.log(in_words(999922233333300)); // 1.233.333.300 - 233.333.300 23.222.233.333.300
+// console.log(in_words(999000000000000));
