@@ -1,5 +1,9 @@
+"use strict"
+
 var satuan = ['', 'satu', 'dua', 'tiga', 'empat', 'lima',
               'enam', 'tujuh', 'delapan', 'sembilan']
+let belasan = ['sepuluh', 'sebelas', 'duabelas', 'tigabelas', 'empatbelas',
+              'limabelas', 'enambelas', 'tujuhbelas', 'delapanbelas', 'sembilanbelas']
 
 function in_words(angka, result=''){
 
@@ -69,30 +73,40 @@ function in_words(angka, result=''){
     angka = angka - (firstChar * 100)
     return in_words(angka, result)
 
-  } else if (angka.toString().length == 2) {
+  } else if (angka.toString().length == 2 || angka.toString().length == 1) {
     if (angka < 20) {
-      let firstChar = angka.toString()[0]
-      result += satuan[firstChar]
-      result +=  ' belas '
-      angka = angka - (firstChar * 10)
-      return in_words(angka, result)
+      console.log(angka);
+        if (angka > 10) {
+            let temp = angka -10
+            console.log('kemari')
+            let firstChar = angka.toString()[0]
+            result += belasan[temp]
+            angka -= (firstChar * 10)
+            return result
+        } else {
+          result += satuan[angka]
+          console.log('apakah mungkin');
+          return result
+        }
+        return in_words(angka, result)
+
     } else {
       let firstChar = angka.toString()[0]
-      result += satuan[firstChar]
+      result += satuan[firstChar] + ' '
       result +=  ' puluh '
       angka = angka - (firstChar * 10)
       return in_words(angka, result)
     }
   } else {
-    result += satuan[angka]
+    // result += satuan[angka]
   }
   return result
 }
 
 // Driver code
-console.log(in_words(4));
+// console.log(in_words(4));
 console.log(in_words(15));
-console.log(in_words(102));
-console.log(in_words(12333333));
-console.log(in_words(999922233333300)); // 1.233.333.300 - 233.333.300 23.222.233.333.300
+console.log(in_words(132));
+console.log(in_words(12333333)); // 12.333.333
+console.log(in_words(999922233333315)); // 999.922.233.333.300
 // console.log(in_words(999000000000000));
