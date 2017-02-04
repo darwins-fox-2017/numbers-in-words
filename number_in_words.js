@@ -75,17 +75,14 @@ function in_words(angka, result=''){
 
   } else if (angka.toString().length == 2 || angka.toString().length == 1) {
     if (angka < 20) {
-      console.log(angka);
         if (angka > 10) {
             let temp = angka -10
-            console.log('kemari')
             let firstChar = angka.toString()[0]
             result += belasan[temp]
             angka -= (firstChar * 10)
             return result
         } else {
           result += satuan[angka]
-          console.log('apakah mungkin');
           return result
         }
         return in_words(angka, result)
@@ -105,8 +102,9 @@ function in_words(angka, result=''){
 
 // Driver code
 // console.log(in_words(4));
-console.log(in_words(15));
-console.log(in_words(132));
-console.log(in_words(12333333)); // 12.333.333
-console.log(in_words(999922233333315)); // 999.922.233.333.300
+console.log('15 : ' + in_words(15));
+console.log('132 : ' +  in_words(132));
+console.log('89 : ' + in_words(89));
+console.log('12333333' + in_words(12333333)); // 12.333.333
+console.log('999922233333315' + in_words(999922233333315)); // 999.922.233.333.300
 // console.log(in_words(999000000000000));
