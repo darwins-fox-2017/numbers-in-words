@@ -174,6 +174,49 @@ function in_words(angka, hasil = "") {
       return in_words(angka, hasil);
     }
   }
+  if(angka.toString().length == 14){
+      let angkaPuluhTriliunan = first_number(angka);
+      if(angkaPuluhTriliunan === 1){
+        hasil += "sepuluh triliun ";
+        angka -= (10000000000000 * angkaPuluhTriliunan);
+        return in_words(angka, hasil);
+      } else {
+        hasil += words[angkaPuluhTriliunan];
+        hasil += " puluh ";
+        angka -= (10000000000000 * angkaPuluhTriliunan);
+        return in_words(angka, hasil);
+      }
+    }
+
+    if(angka.toString().length == 15){
+      let angkaRatusTriliunan = first_number(angka);
+      if(angkaRatusTriliunan === 1){
+        hasil += "seratus triliun ";
+        angka -= (100000000000000 * angkaRatusTriliunan);
+        return in_words(angka, hasil);
+      } else {
+        hasil += words[angkaRatusTriliunan];
+        hasil += " ratus ";
+        angka -= (100000000000000 * angkaRatusTriliunan);
+        return in_words(angka, hasil);
+      }
+    }
+
+    if(angka.toString().length == 16){
+      let angkaKuadriliun = first_number(angka);
+      if(angkaKuadriliun === 1){
+        hasil += "satu kuadriliun ";
+        angka -= (1000000000000000 * angkaKuadriliun);
+        return in_words(angka, hasil);
+      } else {
+        hasil += words[angkaKuadriliun];
+        hasil += " kuadriliun ";
+        angka -= (1000000000000000 * angkaKuadriliun);
+        return in_words(angka, hasil);
+      }
+    }
+
+
 }
 
 function first_number(angka) {
@@ -189,3 +232,6 @@ console.log(in_words(1000000000));
 console.log(in_words(10000000000));
 console.log(in_words(100000000000));
 console.log(in_words(1000000000000));
+console.log(in_words(10000000000000));
+console.log(in_words(100000000000000));
+console.log(in_words(1000000000000000));
