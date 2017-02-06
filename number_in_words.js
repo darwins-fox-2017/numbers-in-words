@@ -215,8 +215,6 @@ function in_words(angka, hasil = "") {
         return in_words(angka, hasil);
       }
     }
-
-
 }
 
 function first_number(angka) {
@@ -225,13 +223,13 @@ function first_number(angka) {
 }
 
 // Driver code
-console.log(in_words(1000000));
-console.log(in_words(10000000));
-console.log(in_words(100000000));
-console.log(in_words(1000000000));
-console.log(in_words(10000000000));
-console.log(in_words(100000000000));
-console.log(in_words(1000000000000));
-console.log(in_words(10000000000000));
-console.log(in_words(100000000000000));
-console.log(in_words(1000000000000000));
+console.log(in_words(908686));
+console.log(in_words(2132));
+console.log(in_words(100000009));
+console.log(in_words(7000000018));
+// console.log(in_words(10000000000));
+// console.log(in_words(100000000000));
+// console.log(in_words(1000000000000));
+// console.log(in_words(10000000000000));
+// console.log(in_words(100000000000000));
+// console.log(in_words(1000000000000000));
